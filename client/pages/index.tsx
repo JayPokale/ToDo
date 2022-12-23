@@ -1,8 +1,19 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
+import Overlay from "../components/Overlay";
 import ToDoItem from "../components/ToDoItem";
+import ToDoList from "../components/ToDoList";
 
 const Home: NextPage = () => {
+  const [isActive, setIsActive] = useState(true);
+  const [task, setTask] = useState({
+    _id: "dfjds",
+    title: "This is an trial Title",
+    content:
+      "jdskfh jhd fiush foisuhgioes rghaoihfeariu gaerifh ai haifh aeoif h faof a",
+    date: new Date(2022, 11, 23),
+  });
   return (
     <div className="flex min-h-screen flex-col py-2">
       <Head>
@@ -22,27 +33,38 @@ const Home: NextPage = () => {
           </code>
         </p>
 
+        <Overlay isActive={isActive} setIsActive={setIsActive} setTask={setTask} />
+        <ToDoItem task={task} />
+
         <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <ToDoItem
+          <ToDoList
             title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
             content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
-            date={new Date(2022,11,23)}
+            date={new Date(2022, 11, 23)}
+            setIsActive={setIsActive}
+            setTask={setTask}
           />
 
-          <ToDoItem
+          <ToDoList
             title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
             content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
-            date={new Date(2022,11,24)}
+            date={new Date(2022, 11, 24)}
+            setIsActive={setIsActive}
+            setTask={setTask}
           />
-          <ToDoItem
+          <ToDoList
             title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
             content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
-            date={new Date(2022,11,22)}
+            date={new Date(2022, 11, 22)}
+            setIsActive={setIsActive}
+            setTask={setTask}
           />
-          <ToDoItem
+          <ToDoList
             title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
             content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
-            date={undefined}
+            date={new Date(2022, 11, 30)}
+            setIsActive={setIsActive}
+            setTask={setTask}
           />
         </div>
       </main>

@@ -19,44 +19,24 @@ const ddmmyyyy = (date: Date) => {
   return dd + "/" + mm + "/" + yyyy;
 };
 
-interface myType {
-  title: String;
-  content: String;
-  date: Date | undefined;
+interface ToDoItem {
+  task: {
+    _id: string;
+    title: string;
+    content: string;
+    date: Date;
+  };
 }
-
-const ToDoItem = ({ title, content, date }: myType) => {
+const ToDoItem = ({ task }: ToDoItem) => {
+  console.log(typeof task);
   return (
-    <div className="relative mt-6 w-96 h-48 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600 cursor-pointer:">
-      <h3
-        className="text-2xl font-bold"
-        style={{
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          WebkitLineClamp: "1",
-          display: "-webkit-box",
-          WebkitBoxOrient: "vertical",
-        }}
-      >
-        {title}
-      </h3>
-      <p
-        className="mt-4 text-xl"
-        style={{
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          WebkitLineClamp: "3",
-          display: "-webkit-box",
-          WebkitBoxOrient: "vertical",
-        }}
-      >
-        {content}
-      </p>
-      {date && (
-        <p className="absolute text-xs tracking-widest bottom-2 right-8">
-          {ddmmyyyy(date)}
-        </p>
-      )}
+    <div className={`w-5/6 max-w-2xl h-4/5 max-h-[768px] duration-300 ease-in-out z-10 fixed p-4 bg-slate-100 flex flex-col ${task ? "" : "scale-50 opacity-0 -z-10"}`}>
+      <div className="pb-2">
+        <h1 className="text-left text-4xl px-2">{task?.title}</h1>
+        <p className="text-right text-sm px-2">{ddmmyyyy(task?.date)}</p>
+      </div>
+      <hr className="pb-4"/>
+      <p className="text-left text-xl px-2 overflow-y-auto h-full">{task?.content}</p>
     </div>
   );
 };
