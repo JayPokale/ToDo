@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-const reqStr = { type: String, required: true };
 const todoSchema = new mongoose.Schema(
   {
-    title: reqStr,
-    content: reqStr,
-    status: {type:Boolean, default:false},
+    title: { type: String, required: true },
+    content: { type: String, required: true },
+    deadline: Date,
+    isPending: {type:Boolean, default:true},
   },
   {
     timestamps: true,

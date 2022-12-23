@@ -6,7 +6,7 @@ const todo = express.Router();
 // Get ToDo
 todo.get("/", async (req, res) => {
   const posts = await model.find();
-  res.status(200).send({ posts });
+  res.status(200).send({ posts, error: false });
   console.log("Success");
 });
 
@@ -16,8 +16,8 @@ todo.post("/create", async (req, res) => {
 
   if (!title || !content) {
     res.status(204).send({
-      error: true,
       message: "All fields are required",
+      error: true,
     });
     console.log("Error");
     return;
@@ -28,9 +28,9 @@ todo.post("/create", async (req, res) => {
     content,
   });
   res.status(200).send({
-    error: false,
     message: "Added to database",
     todo: create,
+    error: false,
   });
   console.log("Added");
 });
@@ -41,8 +41,8 @@ todo.delete("/delete", async (req, res) => {
 
   if (!_id) {
     res.status(204).send({
-      error: true,
       message: "ID is Empty",
+      error: true,
     });
     console.log("Error");
     return;
@@ -50,9 +50,9 @@ todo.delete("/delete", async (req, res) => {
 
   const remove = await model.deleteOne({ _id });
   res.status(200).send({
-    error: false,
     message: "Deleted Successfully",
     removed: remove,
+    error: false,
   });
   console.log("Deleted");
 });
