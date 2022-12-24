@@ -3,7 +3,7 @@ export interface payloadType {
 }
 
 export default async function CreatePost(payload: payloadType) {
-  const res = await fetch("http://localhost:8000/api/todo/create", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

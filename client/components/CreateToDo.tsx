@@ -23,8 +23,6 @@ const CreateToDo = ({ create, setCreate, setIsActive, allPosts, setAllPosts }: C
     setIsActive(false);
     e.target.reset();
     !res.error && setAllPosts([res.todo,...allPosts])
-    console.log("payload",payload)
-    console.log("res", res)
   };
 
   return (

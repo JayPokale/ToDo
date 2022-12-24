@@ -1,5 +1,5 @@
 export default async function DeleteTodo(_id: string | undefined) {
-  const res = await fetch("http://localhost:8000/api/todo/delete", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/delete`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
