@@ -24,7 +24,7 @@ const task = {
   title: "This is an trial Title",
   content:
     "jdskfh jhd fiush foisuhgioes rghaoihfeariu gaerifh ai haifh aeoif h faof a",
-  date: new Date(2022, 11, 23),
+  deadline: new Date(2022, 11, 23),
 };
 
 interface myType {

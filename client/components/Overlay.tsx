@@ -4,10 +4,10 @@ interface Overlay {
   isActive: Boolean;
   setIsActive: Function;
   setTask: Function;
+  setCreate: Function;
 }
 
-const Overlay = ({ isActive, setIsActive, setTask }: Overlay) => {
-  console.log(isActive);
+const Overlay = ({ isActive, setIsActive, setTask, setCreate }: Overlay) => {
   return (
     <div
       className={`w-screen h-screen duration-300 ease-in-out z-10 fixed inset-0 ${
@@ -16,6 +16,7 @@ const Overlay = ({ isActive, setIsActive, setTask }: Overlay) => {
       onClick={() => {
         setIsActive(false);
         setTask(null);
+        setCreate(false);
       }}
     />
   );

@@ -1,19 +1,15 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
+import CreateToDo from "../components/CreateToDo";
 import Overlay from "../components/Overlay";
 import ToDoItem from "../components/ToDoItem";
 import ToDoList from "../components/ToDoList";
 
 const Home: NextPage = () => {
   const [isActive, setIsActive] = useState(true);
-  const [task, setTask] = useState({
-    _id: "dfjds",
-    title: "This is an trial Title",
-    content:
-      "jdskfh jhd fiush foisuhgioes rghaoihfeariu gaerifh ai haifh aeoif h faof a",
-    date: new Date(2022, 11, 23),
-  });
+  const [task, setTask] = useState(null);
+  const [create, setCreate] = useState(true);
   return (
     <div className="flex min-h-screen flex-col py-2">
       <Head>
@@ -28,13 +24,25 @@ const Home: NextPage = () => {
 
         <p className="mt-3 text-2xl">
           Add new task here{" "}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg cursor-pointer">
+          <code
+            className="rounded-md bg-gray-100 p-3 font-mono text-lg cursor-pointer"
+            onClick={() => {
+              setIsActive(true);
+              setCreate(true);
+            }}
+          >
             Create
           </code>
         </p>
 
-        <Overlay isActive={isActive} setIsActive={setIsActive} setTask={setTask} />
+        <Overlay
+          isActive={isActive}
+          setIsActive={setIsActive}
+          setTask={setTask}
+          setCreate={setCreate}
+        />
         <ToDoItem task={task} />
+        <CreateToDo create={create} setCreate={setCreate} />
 
         <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
           <ToDoList
