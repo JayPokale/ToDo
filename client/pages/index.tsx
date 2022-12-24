@@ -22,7 +22,7 @@ const Home: NextPage = () => {
           Welcome to <span className="text-blue-600">Next.ToDo!</span>
         </h1>
 
-        <p className="mt-3 text-2xl">
+        <p className="mt-3 text-2xl flex items-center gap-2">
           Add new task here{" "}
           <code
             className="rounded-md bg-gray-100 p-3 font-mono text-lg cursor-pointer"

@@ -18,9 +18,6 @@
   border: 4px solid transparent;
   border-radius: 7px;
 }
-::-webkit-scrollbar-track{
-  background: rgba(256,256,256,0.5);
-}
 ::-webkit-scrollbar-track-piece {
   margin: 5px;
 }
