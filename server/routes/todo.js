@@ -12,7 +12,7 @@ todo.get("/", async (req, res) => {
 
 // Create ToDo
 todo.post("/create", async (req, res) => {
-  const { title, content } = req.body;
+  const { title, content, deadline=null } = req.body;
 
   if (!title || !content) {
     res.status(204).send({
@@ -26,6 +26,7 @@ todo.post("/create", async (req, res) => {
   const create = await model.create({
     title,
     content,
+    deadline,
   });
   res.status(200).send({
     message: "Added to database",

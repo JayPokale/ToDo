@@ -19,15 +19,8 @@ const ddmmyyyy = (date: Date) => {
   return dd + "/" + mm + "/" + yyyy;
 };
 
-const task = {
-  _id: "dfjds",
-  title: "This is an trial Title",
-  content:
-    "jdskfh jhd fiush foisuhgioes rghaoihfeariu gaerifh ai haifh aeoif h faof a",
-  deadline: new Date(2022, 11, 23),
-};
-
 interface myType {
+  _id: string;
   title: String;
   content: String;
   date: Date | undefined;
@@ -35,7 +28,21 @@ interface myType {
   setTask: Function;
 }
 
-const ToDoList = ({ title, content, date, setIsActive, setTask }: myType) => {
+const ToDoList = ({
+  _id,
+  title,
+  content,
+  date,
+  setIsActive,
+  setTask,
+}: myType) => {
+  const task = {
+    _id: _id,
+    title: title,
+    content:content,
+    deadline: date,
+  };
+
   return (
     <div
       className="relative mt-6 w-96 h-48 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600 cursor-pointer peer"

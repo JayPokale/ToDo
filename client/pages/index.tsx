@@ -1,15 +1,18 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreateToDo from "../components/CreateToDo";
 import Overlay from "../components/Overlay";
 import ToDoItem from "../components/ToDoItem";
 import ToDoList from "../components/ToDoList";
+import GetAllPosts from "../services/GetAllPosts";
 
-const Home: NextPage = () => {
-  const [isActive, setIsActive] = useState(true);
+const Home: NextPage<any> = ({ data }) => {
+  const [isActive, setIsActive] = useState(false);
   const [task, setTask] = useState(null);
-  const [create, setCreate] = useState(true);
+  const [create, setCreate] = useState(false);
+  const [allPosts, setAllposts] = useState(data.posts)
+
   return (
     <div className="flex min-h-screen flex-col py-2">
       <Head>
@@ -41,54 +44,53 @@ const Home: NextPage = () => {
           setTask={setTask}
           setCreate={setCreate}
         />
-        <ToDoItem task={task} />
-        <CreateToDo create={create} setCreate={setCreate} />
+        <ToDoItem
+          task={task}
+          setTask={setTask}
+          setIsActive={setIsActive}
+          allPosts={allPosts}
+          setAllPosts={setAllposts}
+        />
+        <CreateToDo
+          create={create}
+          setCreate={setCreate}
+          setIsActive={setIsActive}
+          allPosts={allPosts}
+          setAllPosts={setAllposts}
+        />
 
         <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <ToDoList
-            title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
-            content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
-            date={new Date(2022, 11, 23)}
-            setIsActive={setIsActive}
-            setTask={setTask}
-          />
-
-          <ToDoList
-            title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
-            content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
-            date={new Date(2022, 11, 24)}
-            setIsActive={setIsActive}
-            setTask={setTask}
-          />
-          <ToDoList
-            title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
-            content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
-            date={new Date(2022, 11, 22)}
-            setIsActive={setIsActive}
-            setTask={setTask}
-          />
-          <ToDoList
-            title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
-            content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, alias."
-            date={new Date(2022, 11, 30)}
-            setIsActive={setIsActive}
-            setTask={setTask}
-          />
+          {allPosts.map((post: any) => {
+            return (
+              <ToDoList
+                key={post._id}
+                _id={post._id}
+                title={post.title}
+                content={post.content}
+                date={post.deadline}
+                setIsActive={setIsActive}
+                setTask={setTask}
+              />
+            );
+          })}
         </div>
       </main>
 
       <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by <span className="text-blue-600 font-bold">Jay Pokale</span>
-        </a>
+        <h1 className="flex items-center justify-center gap-2">
+          Created by <span className="text-blue-600 font-bold">Jay Pokale</span>
+        </h1>
       </footer>
     </div>
   );
 };
 
 export default Home;
+
+export async function getStaticProps() {
+  const data = await GetAllPosts();
+  return {
+    props: { data },
+    revalidate: 60,
+  };
+}

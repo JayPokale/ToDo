@@ -4,8 +4,7 @@ const todoSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     content: { type: String, required: true },
-    deadline: Date,
-    isPending: {type:Boolean, default:true},
+    deadline: Date | null,
   },
   {
     timestamps: true,
