@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CreateToDo from "../components/CreateToDo";
 import Overlay from "../components/Overlay";
 import ToDoItem from "../components/ToDoItem";
@@ -11,7 +11,7 @@ const Home: NextPage<any> = ({ data }) => {
   const [isActive, setIsActive] = useState(false);
   const [task, setTask] = useState(null);
   const [create, setCreate] = useState(false);
-  const [allPosts, setAllposts] = useState(data.posts)
+  const [allPosts, setAllposts] = useState(data.posts);
 
   return (
     <div className="flex min-h-screen flex-col py-2">

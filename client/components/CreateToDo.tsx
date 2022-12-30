@@ -10,7 +10,11 @@ interface CreateToDo {
 }
 
 const CreateToDo = ({ create, setCreate, setIsActive, allPosts, setAllPosts }: CreateToDo) => {
+
+  const [isUploadind, setIsUploading] = useState(false)
+
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+    setIsUploading(true)
     e.preventDefault();
     const payload: { [key: string]: any } = {};
     const data = new FormData(e.target);
@@ -19,6 +23,7 @@ const CreateToDo = ({ create, setCreate, setIsActive, allPosts, setAllPosts }: C
     }
 
     const res = await CreatePost(payload);
+    setIsUploading(false)
     setCreate(false);
     setIsActive(false);
     e.target.reset();
@@ -28,7 +33,7 @@ const CreateToDo = ({ create, setCreate, setIsActive, allPosts, setAllPosts }: C
   return (
     <form
       onSubmit={handleSubmit}
-      className={`w-5/6 max-w-2xl h-4/5 max-h-[768px] duration-300 ease-in-out z-10 fixed p-4 bg-slate-100 rounded-lg flex flex-col ${
+      className={`w-5/6 max-w-2xl h-4/5 max-h-[768px] duration-300 ease-in-out z-10 fixed p-4 bg-slate-100 rounded-lg flex flex-col overflow-hidden ${
         create || "scale-50 opacity-0 -z-10"
       }`}
     >
@@ -64,6 +69,9 @@ const CreateToDo = ({ create, setCreate, setIsActive, allPosts, setAllPosts }: C
           className="bg-green-500 rounded-xl py-2 px-4 drop-shadow-md cursor-pointer"
         />
       </div>
+      {isUploadind && <div className="w-full h-full bg-black/30 z-10 absolute inset-0 grid place-items-center">
+        <div className="w-36 h-36 bg-transparent rounded-full border-[6px] border-white/30 border-b-[6px] border-b-white animate-spin"></div>
+      </div>}
     </form>
   );
 };

@@ -16,6 +16,13 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "services/CreatePost.ts", "services/DeletePost.ts", "services/GetAllPosts.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "services/CreatePost.ts",
+    "services/DeletePost.ts",
+    "services/GetAllPosts.ts"
+  ],
   "exclude": ["node_modules"]
 }

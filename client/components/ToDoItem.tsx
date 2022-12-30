@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DeleteTodo from "../services/DeletePost";
 
 const ddmmyyyy = (date: Date) => {
@@ -33,8 +33,12 @@ interface ToDoItem {
   setAllPosts: Function;
 }
 const ToDoItem = ({ task, setTask, setIsActive, allPosts, setAllPosts }: ToDoItem) => {
+  const [isDeleting, setIsDeleting] = useState(false)
+
   const HandleDelete = async (id: string | undefined) => {
+    setIsDeleting(true)
     const res = await DeleteTodo(id);
+    setIsDeleting(false)
     if (!res.error) {
       setTask(null);
       setIsActive(false);
@@ -67,6 +71,9 @@ const ToDoItem = ({ task, setTask, setIsActive, allPosts, setAllPosts }: ToDoIte
           Delete
         </span>
       </div>
+      {isDeleting && <div className="w-full h-full bg-black/30 z-10 absolute inset-0 grid place-items-center">
+        <div className="w-36 h-36 bg-transparent rounded-full border-[6px] border-white/30 border-b-[6px] border-b-white animate-spin"></div>
+      </div>}
     </div>
   );
 };
