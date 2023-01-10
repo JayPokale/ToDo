@@ -5,5 +5,6 @@ export default async function GetAllPosts(){
       "Content-Type": "application/json",
     },
   });
-  return await postList.json();
+  const responce = await postList.json()
+  return responce;
 }

@@ -10,5 +10,6 @@ export default async function CreatePost(payload: payloadType) {
     },
     body: JSON.stringify(payload),
   });
-  return await res.json()
+  const responce = await res.json()
+  return responce
 }

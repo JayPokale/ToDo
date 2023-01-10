@@ -9,5 +9,5 @@ export default async function DeleteTodo(_id: string | undefined) {
     }),
   });
   const responce = await res.json();
-  return await responce;
+  return responce;
 }
