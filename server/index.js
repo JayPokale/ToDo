@@ -11,7 +11,7 @@ const port = process.env.PORT || 8000;
 
 app.use(
   cors({
-    origin: ['https://jaytodo.vercel.app', 'https://to-do-jaypokale35-gmailcom.vercel.app/']
+    origin: ['https://jaytodo.vercel.app', 'https://to-do-jaypokale35-gmailcom.vercel.app']
   })
 );
 
